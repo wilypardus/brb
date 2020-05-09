@@ -2,7 +2,10 @@
     Creador de cartas <small> Reactivo </small></h4>
 <hr>
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" #f="ngForm">
+
     <div class="form-group">
+        <input type="text" id="id" class="form-control" placeholder="Nombre de la carta..." name="id" formControlName="id" disabled>
+
         <label for="name">Nombre</label>
         <input type="text" id="name" class="form-control" placeholder="Nombre de la carta..." name="name" formControlName="name" required>
     </div>
@@ -51,11 +54,11 @@
 
 
 
-                                    <td><input formControlName="plato" class="form-control" type="text" placeholder="Nombre del plato" id="plato" name="plato" required/></td>
-                                    <td><input formControlName="plato" class="form-control" type="text" placeholder="Descripción del plato" id="descripcion" name="descripcion" /> </td>
+                                    <td><input formControlName="plato" class="form-control" type="text" placeholder="Nombre del plato" id="plato" name="plato" /></td>
+                                    <td><input formControlName="descripcion" class="form-control" type="text" placeholder="Descripción del plato" id="descripcion" name="descripcion" /> </td>
                                     <td>
                                         <div class="input-group">
-                                            <input formControlName="plato" class="form-control" type="number" placeholder="Precio del plato" id="precio" name="precio" required/>
+                                            <input formControlName="precio" class="form-control" type="number" placeholder="Precio del plato" id="precio" name="precio" />
                                             <div class="input-group-append">
                                                 <span class="input-group-text">€</span>
                                             </div>

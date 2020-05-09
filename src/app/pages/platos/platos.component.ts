@@ -1,5 +1,6 @@
-import { Component, OnInit, PLATFORM_INITIALIZER } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { MenusService } from '../../services/menus.service';
 
 @Component({
   selector: 'app-platos',
@@ -12,85 +13,93 @@ export class PlatosComponent {
   data = {
     categorias: [
       {
-        categoria: "",
-        descripcion:"",
+        categoria: '',
+        descripcion: '',
         platos: [
           {
-            plato: "",
-            descripcion:"",
-            precio:"",
+            plato: '',
+            descripcion: '',
+            precio: '',
           }
         ]
       }
     ]
-  }
+  };
 
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private _menusService: MenusService
+    ) {
     this.myForm = this.fb.group({
+      id: [''],
       name: [''],
       categorias: this.fb.array([])
-    })
+    });
 
     this.setCategorias();
   }
-  get categoriaData() {return  this.myForm.get('categorias') as FormArray}
-  get platosData() {return  this.myForm.get('platos') as FormArray}
+  get categoriaData() {return  this.myForm.get('categorias') as FormArray; }
+
 
   onSubmit() {
     alert(this.myForm.value);
+    this._menusService.crearMenu(this.myForm.value).subscribe(resp => {
+      this.myForm.get('id').setValue(resp.id);
+      // console.log(resp);
+    });
   }
 
   addNewCategoria() {
-    let control = this.myForm.get('categorias') as FormArray
+    const control = this.myForm.get('categorias') as FormArray;
 
     control.push(
       this.fb.group({
         categoria: [''],
-        descripcion:[''],
+        descripcion: [''],
         platos: this.fb.array([])
       })
-    )
+    );
   }
 
   deleteCategoria(index) {
-    let control = this.myForm.get('categorias') as FormArray
-    control.removeAt(index)
+    const control = this.myForm.get('categorias') as FormArray;
+    control.removeAt(index);
   }
 
   addNewPlato(control) {
     control.push(
       this.fb.group({
         plato: [''],
-        descripcion:[''],
-        precio:['']
-      }))
+        descripcion: [''],
+        precio: ['']
+      }));
   }
 
   deletePlato(control, index) {
-    control.removeAt(index)
+    control.removeAt(index);
   }
 
   setCategorias() {
-    let control =  this.myForm.get('categorias') as FormArray;
+    const control =  this.myForm.get('categorias') as FormArray;
     this.data.categorias.forEach(x => {
       control.push(this.fb.group({
         categoria: x.categoria,
         descripcion: x.descripcion,
-        platos: this.setPlatos(x) }))
-    })
+        platos: this.setPlatos(x) }));
+    });
   }
 
   setPlatos(x) {
-    let arr = new FormArray([])
+    const arr = new FormArray([]);
     x.platos.forEach(y => {
       arr.push(this.fb.group({
         plato: y.plato,
         descripcion: y.descripcion,
         precio: y.precio,
-      }))
-    })
+      }));
+    });
     return arr;
   }
 }
