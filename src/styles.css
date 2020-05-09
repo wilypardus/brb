@@ -4,3 +4,26 @@
     font-size: 1.2em!important;
     margin-bottom: 1em!important;
 }
+
+.border-dark {
+    border: 1px solid #ccc!important;
+}
+
+.card-header {
+    border-bottom: 0px!important
+}
+
+.cabecera {
+    color: white;
+    font-weight: 100;
+    background-color: #007BFF;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.03)!important;
+}
+
+tabla-borde {
+    border: 1px solid #eee!important;
+    border-radius: 5px!important;
+}

@@ -38,10 +38,11 @@ export class MenuComponent implements OnInit {
     this.myForm = this.fb.group({
       id: [''],
       name: [''],
+      img: [''],
       categorias: this.fb.array([])
     });
 
-    
+
   }
   get categoriaData() {return  this.myForm.get('categorias') as FormArray; }
 
@@ -63,12 +64,12 @@ ngOnInit():void{
 
 
       const control =  this.myForm.get('categorias') as FormArray;
-    
+
       control.push(this.fb.group({
         categoria: x.categoria,
         descripcion: x.descripcion,
         platos: this.setPlatos(x) }));
-    
+
 
 
       });
@@ -84,6 +85,8 @@ ngOnInit():void{
       this.idTemp=id;
       this.myForm.get('id').setValue(this.idTemp);
     })
+  }else{
+    this.addNewCategoria()
   }
 
 }

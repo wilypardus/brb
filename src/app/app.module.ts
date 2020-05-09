@@ -13,6 +13,7 @@ import { ReactiveComponent } from './pages/reactive/reactive.component';
 import { MenuComponent } from './pages/menu/menu.component';
 
 import { MenusComponent } from './pages/menus/menus.component';
+import { VistaMenuComponent } from './pages/vista-menu/vista-menu.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { MenusComponent } from './pages/menus/menus.component';
     ReactiveComponent,
     MenuComponent,
 
-    MenusComponent
+    MenusComponent,
+
+    VistaMenuComponent
   ],
   imports: [
     BrowserModule,
