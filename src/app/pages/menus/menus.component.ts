@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenusService } from '../../services/menus.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-menus',
@@ -9,6 +10,7 @@ import { MenusService } from '../../services/menus.service';
 })
 export class MenusComponent implements OnInit {
 menus;
+
   constructor( private _menusService:MenusService) { }
 
   ngOnInit(): void {
@@ -18,5 +20,39 @@ menus;
       this.menus=resp
     })
   }
+  borrarMenu(menu,i:number){
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-danger',
+        cancelButton: 'btn btn-outline-info mr-2'
+      },
+      buttonsStyling: false
+    })
 
+    swalWithBootstrapButtons.fire({
+      title: `¿Seguro que quieres borrar ${menu.name}?`,
+      text: "Esta acción no se puede revertir",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this._menusService.borrarMenu(menu.id).subscribe(this.menus.splice(i,1));
+        swalWithBootstrapButtons.fire(
+          'Eliminado!',
+          'El registro ha sido eliminado',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+       return
+      }
+
+  }
+
+    )}
 }

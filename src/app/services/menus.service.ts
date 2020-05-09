@@ -20,6 +20,9 @@ private url = 'https://menu-app-bd.firebaseio.com';
     })
   );
   }
+  borrarMenu(id){
+    return this.http.delete(`${this.url}/Menus/${id}.json`)
+  }
 
   actualizarMenu(menu){
   return this.http.put(`${this.url}/Menus/${menu.id}.json`,menu)
