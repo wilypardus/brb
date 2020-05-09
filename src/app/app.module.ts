@@ -14,6 +14,11 @@ import { MenuComponent } from './pages/menu/menu.component';
 
 import { MenusComponent } from './pages/menus/menus.component';
 import { VistaMenuComponent } from './pages/vista-menu/vista-menu.component';
+import { LoginComponent } from './auth/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './auth/register.component';
+import { HeaderComponent } from './shared/header/header.component';
+
 
 @NgModule({
   declarations: [
@@ -24,14 +29,23 @@ import { VistaMenuComponent } from './pages/vista-menu/vista-menu.component';
 
     MenusComponent,
 
-    VistaMenuComponent
+    VistaMenuComponent,
+
+    LoginComponent,
+
+    RegisterComponent,
+
+    HeaderComponent,
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ export class UserModel{
   id:string;
   nombre:string;
   password:string;
-  mail:string;
+  email:string;
   created:Date;
 
 

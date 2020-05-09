@@ -37,6 +37,7 @@ export class MenuComponent implements OnInit {
     ) {
     this.myForm = this.fb.group({
       id: [''],
+      userId:[''],
       name: [''],
       img: [''],
       categorias: this.fb.array([])
