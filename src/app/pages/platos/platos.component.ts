@@ -10,6 +10,7 @@ import { MenusService } from '../../services/menus.service';
 })
 export class PlatosComponent {
   controls;
+  idTemp;
   data = {
     categorias: [
       {
@@ -43,12 +44,24 @@ export class PlatosComponent {
   get categoriaData() {return  this.myForm.get('categorias') as FormArray; }
 
 
-  onSubmit() {
-    alert(this.myForm.value);
-    this._menusService.crearMenu(this.myForm.value).subscribe(resp => {
-      this.myForm.get('id').setValue(resp.id);
-      // console.log(resp);
-    });
+  crearMenu() {
+    if (this.idTemp){
+      alert("Registro actualizado");
+      this._menusService.actualizarMenu(this.myForm.value).subscribe(resp => {
+        console.log(resp);
+      });
+
+
+    }else{
+      alert("Registro creado");
+      this._menusService.crearMenu(this.myForm.value).subscribe(resp => {
+        this.myForm.get('id').setValue(resp.id);
+        this.idTemp=resp.id
+        //console.log(resp);
+      });
+
+    }
+
   }
 
   addNewCategoria() {

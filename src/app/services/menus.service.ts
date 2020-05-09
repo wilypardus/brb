@@ -20,4 +20,9 @@ private url = 'https://menu-app-bd.firebaseio.com';
     })
   );
   }
+
+  actualizarMenu(menu){
+  return this.http.put(`${this.url}/Menus/${menu.id}.json`,menu)
+
+  }
 }

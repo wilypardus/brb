@@ -1,7 +1,7 @@
 <h4>
     Creador de cartas <small> Reactivo </small></h4>
 <hr>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" #f="ngForm">
+<form [formGroup]="myForm" (ngSubmit)="crearMenu()" #f="ngForm">
 
     <div class="form-group">
         <input type="text" id="id" class="form-control" placeholder="Nombre de la carta..." name="id" formControlName="id" disabled>
