@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { MenusService } from '../../services/menus.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-platos',
-  templateUrl: './platos.component.html',
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
   styles: [
   ]
 })
-export class PlatosComponent {
+export class MenuComponent implements OnInit {
   controls;
   idTemp;
   data = {
@@ -31,7 +32,8 @@ export class PlatosComponent {
 
   constructor(
     private fb: FormBuilder,
-    private _menusService: MenusService
+    private _menusService: MenusService,
+    private route:ActivatedRoute
     ) {
     this.myForm = this.fb.group({
       id: [''],
@@ -39,10 +41,52 @@ export class PlatosComponent {
       categorias: this.fb.array([])
     });
 
-    this.setCategorias();
+    
   }
   get categoriaData() {return  this.myForm.get('categorias') as FormArray; }
 
+ngOnInit():void{
+  const id = this.route.snapshot.paramMap.get('id');
+  if(id !== 'nuevo'){
+    this._menusService.getMenu(id)
+    .subscribe(resp=>{
+      //console.log("respuesta",resp);
+
+      const respJSON=JSON.stringify(resp)
+      const respPar=JSON.parse(respJSON);
+      //console.log("Resp PARSE",respPar);
+
+      respPar.categorias.forEach(x => {
+        // console.log("clg xRespPar",x);
+        // console.log("clg xRespPar.platos",x.platos);
+
+
+
+      const control =  this.myForm.get('categorias') as FormArray;
+    
+      control.push(this.fb.group({
+        categoria: x.categoria,
+        descripcion: x.descripcion,
+        platos: this.setPlatos(x) }));
+    
+
+
+      });
+
+
+      this.myForm.get('name').setValue(respPar.name);
+
+
+
+
+
+
+      this.idTemp=id;
+      this.myForm.get('id').setValue(this.idTemp);
+    })
+  }
+
+}
 
   crearMenu() {
     if (this.idTemp){

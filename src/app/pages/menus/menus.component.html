@@ -1,0 +1,25 @@
+<div class="row">
+    <button class="btn btn-outline-info mr-1" routerLink="/menu/nuevo"><i class="fa fa-plus"></i> Nuevo Menú</button>
+</div>
+<table class="table mt-3  table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Activo/Desactivo</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let menu of menus;let i=index">
+            <td scope="row">{{i+1}}</td>
+            <th>{{menu.name}}</th>
+            <td>Activo/Desactivo</td>
+            <td>
+                <button class="btn btn-info mr-1"><i class="fa fa-pen" [routerLink]="['/menu',menu.id]"></i></button>
+                <button class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
