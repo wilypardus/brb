@@ -1,0 +1,110 @@
+<h4>
+    Creador de cartas <small> Reactivo </small></h4>
+<hr>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" class="form-control" placeholder="Nombre de la carta..." name="name" formControlName="name" required>
+    </div>
+
+
+    <div formArrayName="categorias">
+        <div class="mt-5" *ngFor="let categoria of categoriaData.controls; let i=index">
+            <fieldset>
+                <legend>
+                    <h4>Categoría {{i+1}}<button class="text-right" type="button" class="ml-3 btn btn-outline-danger btn-sm" (click)="deleteCategoria(i)">
+                      <i class="far fa-trash-alt"></i> Eliminar Categoría
+</button>
+
+                    </h4>
+                </legend>
+                <hr>
+
+                <div [formGroupName]="i" class="mt-3">
+
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label" for="categoria">Título</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="categoria" placeholder="Carnes, pescados, postres..." name="type" formControlName="categoria" style="margin-right:5px;" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label" for="descripcion">Descripción de la categoría</label>
+                        <div class="col-10">
+                            <textarea type="text" class="form-control" id="descripcion" placeholder="Introduzca aquí una breve introducción de la categoría..." name="type" formControlName="descripcion" style="margin-right:5px;"></textarea>
+                        </div>
+
+                        <hr>
+                        <div class="col-1"></div>
+                        <table class="table col-10 mt-5" style="border-bottom:1px solid #eee">
+                            <h5>Platos en esta categoría</h5>
+                            <!-- <thead class="thead-dark">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Precio</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead> -->
+                            <tbody formArrayName="platos">
+                                <tr [formGroupName]="j" style="margin-top:5px; margin-bottom:5px;" *ngFor="let lines of categoria.get('platos').controls; let j=index">
+
+
+
+                                    <td><input formControlName="plato" class="form-control" type="text" placeholder="Nombre del plato" id="plato" name="plato" required/></td>
+                                    <td><input formControlName="plato" class="form-control" type="text" placeholder="Descripción del plato" id="descripcion" name="descripcion" /> </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input formControlName="plato" class="form-control" type="number" placeholder="Precio del plato" id="precio" name="precio" required/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">€</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><button style="margin-right:5px;" type="button" class="btn  btn btn-outline-danger btn-sm" (click)="deletePlato(categoria.controls.platos, j)">
+                                      <i class="fas fa-eraser"></i> Eliminar Plato
+</button></td>
+                                </tr>
+
+
+
+
+                            </tbody>
+
+                        </table>
+
+                        <div class="col-1"></div>
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-primary btn-sm" (click)="addNewPlato(categoria.controls.platos)">
+                            <i class="fa fa-plus"></i> Añadir un nuevo plato
+                      </button>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+            </fieldset>
+        </div>
+        <hr>
+        <button style="margin-top:5px; margin-bottom:5px;" type="button" class="btn btn-primary btn-sm" (click)="addNewCategoria()">
+          <span class="fa fa-plus" aria-hidden="true"></span> Añadir Categoría
+        </button>
+    </div>
+
+    <div class="row mt-5">
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-basic">Cancel</button>
+    </div>
+</form>
+
+<div>
+
+    <pre>{{myForm.value | json}}</pre>
+</div>
