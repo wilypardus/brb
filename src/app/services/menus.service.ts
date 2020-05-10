@@ -67,6 +67,13 @@ actualizarMenu(menu,id){
   return this.menuDoc.update(menu);
 
 }
+actualizarEstado(id,estado){
+
+  this.menuDoc=this.afs.doc<any>(`menus/${id}`)
+  return this.menuDoc.update({activo: !estado});
+
+}
+
 
 
 

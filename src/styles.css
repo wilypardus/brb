@@ -28,6 +28,10 @@ tabla-borde {
     border-radius: 5px!important;
 }
 
+.badge {
+    cursor: pointer!important;
+}
+
 
 /*     LOGIN    */
 

@@ -6,16 +6,19 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Activo/Desactivo</th>
-            <th scope="col">Acciones</th>
+            <th scope="col" class="text-center">Estado</th>
+            <th scope="col" class="text-center">Acciones</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let menu of  _menusService.menus;let i=index">
             <td scope="row">{{i+1}}</td>
             <th>{{menu.name}}</th>
-            <td>Activo/Desactivo</td>
-            <td>
+            <td class="text-center">
+                <span *ngIf="!menu.activo" class="badge badge-danger p-1" (click)="actualizarEstado(menu.eventId,menu.activo)">Desactivado</span>
+                <span *ngIf="menu.activo" class="badge badge-success p-1" (click)="actualizarEstado(menu.eventId,menu.activo)">Activo</span>
+            </td>
+            <td class="text-center">
                 <button class="btn btn-outline-primary mr-2"><i class="fa fa-pen" (click)="putMenu(menu.eventId)"></i> </button>
                 <button class="btn btn-danger" (click)="borrarMenu(menu.eventId)"><i class="fa fa-trash"></i></button>
             </td>

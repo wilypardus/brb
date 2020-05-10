@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
   menu: any;
   controls;
   idTemp;
+  activoTemp;
   data = {
     categorias: [
       {
@@ -45,6 +46,7 @@ export class MenuComponent implements OnInit {
       uid:[this.uid],
       name: [''],
       img: [''],
+      activo:[false],
       categorias: this.fb.array([])
     });
 
@@ -77,11 +79,12 @@ ngOnInit():void{
 
       });
 
-
+    console.log(resp);
       this.myForm.get('name').setValue(resp.name);
 
       this.idTemp=id;
       this.myForm.get('id').setValue(this.idTemp);
+      this.activoTemp=resp.activo;
     })
 
   }else{
@@ -159,6 +162,12 @@ ngOnInit():void{
       }));
     });
     return arr;
+  }
+
+  actualizarEstado(id,estado){
+    this._menusService.actualizarEstado(id,estado).then((resp)=>{
+      console.log(resp);
+    })
   }
 }
 

@@ -60,5 +60,10 @@ export class MenusFirebaseComponent implements OnInit {
       this.router.navigateByUrl(url)
 
     }
+    actualizarEstado(id,estado){
+      this._menusService.actualizarEstado(id,estado).then((resp)=>{
+        console.log(resp);
+      })
+    }
 
 }
