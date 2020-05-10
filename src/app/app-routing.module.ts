@@ -9,6 +9,7 @@ import { RegisterComponent } from './auth/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PruebasComponent } from './pruebas/pruebas.component';
 import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.component';
+import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent},
 { path: 'register', component: RegisterComponent},
 { path: 'pruebas', component: PruebasComponent},
+{ path: 'u/:id', component: CustomerMenuComponent},
 
 
 { path: '**', pathMatch: 'full', redirectTo: 'menus' }

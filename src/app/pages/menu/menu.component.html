@@ -10,7 +10,7 @@
     <span *ngIf="!activoTemp" style="font-size: 20px;font-weight: 100!important;padding: 10px!important;" class="badge badge-danger p-1" (click)="actualizarEstado(idTemp,activoTemp)">Carta inactiva</span>
     <span *ngIf="activoTemp" style="font-size: 20px;font-weight: 100!important;padding: 10px!important;" class="badge badge-success p-1" (click)="actualizarEstado(idTemp,activoTemp)">Carta activa</span>
 </div>
-<form [formGroup]="myForm" (ngSubmit)="crearMenu(f)" #f="ngForm">
+<form [formGroup]="myForm" (ngSubmit)="crearMenu()" #f="ngForm">
 
     <div class="form-group">
 

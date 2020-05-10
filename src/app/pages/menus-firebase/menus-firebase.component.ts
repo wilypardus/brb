@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenusService } from '../../services/menus.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { url } from 'inspector';
+
 
 
 @Component({
@@ -20,7 +20,7 @@ export class MenusFirebaseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  borrarMenu(id,i:number){
+  borrarMenu(id){
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-danger',

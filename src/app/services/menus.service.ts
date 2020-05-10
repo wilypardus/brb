@@ -14,6 +14,7 @@ private menuDoc: AngularFirestoreDocument<any>;
 public menus:any[]=[];
 private url = 'https://menu-app-bd.firebaseio.com';
 menuId;
+public menuUsr:any[]=[];
 // menu;
 
 constructor(
@@ -21,6 +22,16 @@ constructor(
     private afs: AngularFirestore
   ) {
    }
+
+   cargarUsrMenu(id){
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', id).where('activo','==',true).limit(1));
+    return this.menusCollection.valueChanges().pipe(
+      map(resp=>{
+        this.menuUsr=resp
+        console.log("Menus filtrado por uid",this.menuUsr);
+      })
+    )
+  }
 
 cargarMenus(){
   this.menusCollection = this.afs.collection<any>('menus');

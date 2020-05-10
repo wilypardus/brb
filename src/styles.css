@@ -32,6 +32,21 @@ tabla-borde {
     cursor: pointer!important;
 }
 
+.will_table {
+    border-top: 0px!important;
+    border-bottom: 0.25px solid rgb(105, 105, 105);
+    text-transform: uppercase;
+    /* color: #000; */
+    font-size: 0.75em!important;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+    font-weight: 100!important;
+}
+
+.will_precio {
+    font-size: 1em!important;
+}
+
 
 /*     LOGIN    */
 

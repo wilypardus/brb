@@ -1,0 +1,17 @@
+<div *ngFor="let menu of _menusService.menuUsr">
+    <div class="mt-5" *ngFor="let categoria of menu.categorias">
+        <div class="text-center">
+            <h4 class="mb-3"> {{categoria.categoria}}</h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table" style="width: 100%;border-top: 0px solid white!important;">
+                <tbody style="border-top: 0px solid white!important;">
+                    <tr *ngFor="let plato of categoria.platos">
+                        <th class="will_table" style="width: 60%;">{{plato.plato}}</th>
+                        <td class="text-right will_table will_precio" style="width: 20%;">{{plato.precio}} €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

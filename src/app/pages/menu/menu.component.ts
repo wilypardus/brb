@@ -46,6 +46,8 @@ export class MenuComponent implements OnInit {
       uid:[this.uid],
       name: [''],
       img: [''],
+      created:[new Date()],
+      modified:[''],
       activo:[false],
       categorias: this.fb.array([])
     });
@@ -95,13 +97,15 @@ ngOnInit():void{
 
   crearMenu() {
     if (this.idTemp){
+      this,this.myForm.get('modified').setValue(new Date())
       alert("Registro actualizado");
       this._menusService.actualizarMenu(this.myForm.value,this.idTemp).then(resp => {
         console.log(resp);
       });
     }else{
       alert("Registro creado");
-      console.log(this.myForm.value);
+
+      //console.log(this.myForm.value);
       this._menusService.crearMenu(this.myForm.value).then(resp => {
         this.myForm.get('id').setValue(resp.id);
         this.idTemp=resp.id
@@ -166,7 +170,7 @@ ngOnInit():void{
 
   actualizarEstado(id,estado){
     this._menusService.actualizarEstado(id,estado).then((resp)=>{
-      console.log(resp);
+      //console.log(resp);
     })
   }
 }
