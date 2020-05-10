@@ -39,7 +39,7 @@ menus;
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        this._menusService.borrarMenu(menu.id).subscribe(this.menus.splice(i,1));
+        this._menusService.borrarMenu(menu.id)
         swalWithBootstrapButtons.fire(
           'Eliminado!',
           'El registro ha sido eliminado',
