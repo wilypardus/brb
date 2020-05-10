@@ -1,0 +1,8 @@
+<div class="m-4">
+    <div id="mensajes">
+        <div class="text-right" *ngFor="let chat of chatService.chats">
+            <span>{{chat.mensaje}}</span>
+        </div>
+    </div>
+</div>
+<input type="text" name="mensaje" class="form-control" [(ngModel)]="mensaje" (keyup.enter)="enviarMensaje()" placeholder="Enviar mensaje">

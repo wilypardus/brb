@@ -10,6 +10,10 @@ import { ActivatedRoute } from '@angular/router';
   ]
 })
 export class MenuComponent implements OnInit {
+  menu: any = {
+    id: "",
+    data: {}
+  };
   controls;
   idTemp;
   data = {
@@ -50,19 +54,18 @@ export class MenuComponent implements OnInit {
 ngOnInit():void{
   const id = this.route.snapshot.paramMap.get('id');
   if(id !== 'nuevo'){
-    this._menusService.getMenu(id)
-    .subscribe(resp=>{
+
+    this._menusService.getMenu(id).subscribe((resp:any)=>{
+      console.log(resp);
       //console.log("respuesta",resp);
 
-      const respJSON=JSON.stringify(resp)
-      const respPar=JSON.parse(respJSON);
+      //const respJSON=JSON.stringify(resp)
+      //const respPar=JSON.parse(respJSON);
       //console.log("Resp PARSE",respPar);
 
-      respPar.categorias.forEach(x => {
+      resp.categorias.forEach(x => {
         // console.log("clg xRespPar",x);
         // console.log("clg xRespPar.platos",x.platos);
-
-
 
       const control =  this.myForm.get('categorias') as FormArray;
 
@@ -71,21 +74,15 @@ ngOnInit():void{
         descripcion: x.descripcion,
         platos: this.setPlatos(x) }));
 
-
-
       });
 
 
-      this.myForm.get('name').setValue(respPar.name);
-
-
-
-
-
+      this.myForm.get('name').setValue(resp.name);
 
       this.idTemp=id;
       this.myForm.get('id').setValue(this.idTemp);
     })
+
   }else{
     this.addNewCategoria()
   }
@@ -95,14 +92,13 @@ ngOnInit():void{
   crearMenu() {
     if (this.idTemp){
       alert("Registro actualizado");
-      this._menusService.actualizarMenu(this.myForm.value).subscribe(resp => {
+      this._menusService.actualizarMenu(this.myForm.value,this.idTemp).then(resp => {
         console.log(resp);
       });
-
-
     }else{
       alert("Registro creado");
-      this._menusService.crearMenu(this.myForm.value).subscribe(resp => {
+      console.log(this.myForm.value);
+      this._menusService.crearMenu(this.myForm.value).then(resp => {
         this.myForm.get('id').setValue(resp.id);
         this.idTemp=resp.id
         //console.log(resp);

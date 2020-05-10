@@ -1,7 +1,13 @@
-<h4>
-    Creador de cartas <small> Reactivo </small></h4>
+<div class="inline">
+    <div class="text-right">
+        <button routerLink="/menus" type="button" class=" btn btn-sm btn-primary"><i class="fas fa-chevron-left"></i> Volver</button>
+    </div>
+    <h4>
+        Creador de cartas <small> Reactivo </small></h4>
+</div>
 <hr>
-<form [formGroup]="myForm" (ngSubmit)="crearMenu()" #f="ngForm">
+
+<form [formGroup]="myForm" (ngSubmit)="crearMenu(f)" #f="ngForm">
 
     <div class="form-group">
         <input type="text" id="id" class="form-control" placeholder="Nombre de la carta..." name="id" formControlName="id" disabled>
@@ -121,14 +127,21 @@
             </div>
         </div>
         <hr>
-        <button style="margin-top:5px; margin-bottom:5px;" type="button" class="btn btn-primary btn-sm" (click)="addNewCategoria()">
+        <div class="row text-center">
+            <div class="col-12">
+                <button style="margin-top:5px; margin-bottom:5px;" type="button" class="btn btn-outline-primary btn-sm" (click)="addNewCategoria()">
           <span class="fa fa-plus" aria-hidden="true"></span> Añadir Categoría
         </button>
+            </div>
+        </div>
     </div>
+    <div class="row text-center">
+        <div class="col-12 mt-5">
 
-    <div class="row mt-5">
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <button routerLink="/menus" type="button" class="btn btn-basic">Cancel</button>
+            <button type="submit" class="btn btn-success mr-2">Guardar</button>
+            <button routerLink="/menus" type="button" class="btn btn-outline-danger">Cancel</button>
+
+        </div>
     </div>
 </form>
 

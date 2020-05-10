@@ -23,6 +23,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './auth/register.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { PruebasComponent } from './pruebas/pruebas.component';
+import { ChatComponent } from './component/chat/chat.component';
+import { ChatService } from './services/chat.service';
+import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.component';
 
 
 @NgModule({
@@ -44,6 +47,10 @@ import { PruebasComponent } from './pruebas/pruebas.component';
 
     PruebasComponent,
 
+    ChatComponent,
+
+    MenusFirebaseComponent,
+
 
   ],
   imports: [
@@ -55,9 +62,10 @@ import { PruebasComponent } from './pruebas/pruebas.component';
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     //AngularFireAnalyticsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+
   ],
-  providers: [],
+  providers: [ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

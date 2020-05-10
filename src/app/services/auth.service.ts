@@ -37,7 +37,9 @@ export class AuthService {
     ).pipe(
       map( resp=>{
         this.guardarToken(resp['idToken']);
-        console.log(resp);
+        const uid=resp['localId']
+        console.log("uid",uid);
+        localStorage.setItem('lid',uid)
         return resp;
       } )
     )

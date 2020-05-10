@@ -8,13 +8,15 @@ import { LoginComponent } from './auth/login.component';
 import { RegisterComponent } from './auth/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PruebasComponent } from './pruebas/pruebas.component';
+import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.component';
 
 
 const routes: Routes = [
 { path: 'template', component: TemplateComponent },
 { path: 'reactivo', component: ReactiveComponent },
 { path: 'menu/:id', component: MenuComponent, canActivate:[AuthGuard]},
-{ path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
+// { path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
+{ path: 'menus', component: MenusFirebaseComponent, canActivate:[AuthGuard]},
 { path: 'login', component: LoginComponent},
 { path: 'register', component: RegisterComponent},
 { path: 'pruebas', component: PruebasComponent},
