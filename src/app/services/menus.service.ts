@@ -27,11 +27,17 @@ constructor(
     this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', id).where('activo','==',true).limit(1));
     return this.menusCollection.valueChanges().pipe(
       map(resp=>{
-        this.menuUsr=resp
-        console.log("Menus filtrado por uid",this.menuUsr);
+        return this.menuUsr=resp
+        //console.log("Menus filtrado por uid",this.menuUsr);
       })
     )
   }
+
+  // noDisponible(menu){
+  //   this.menuDoc=this.afs.doc<any>(`menus/${menu}`)
+
+  // return this.menuDoc.update({'plato': !estado});
+  // }
 
 cargarMenus(){
   this.menusCollection = this.afs.collection<any>('menus');
@@ -84,6 +90,12 @@ actualizarEstado(id,estado){
   return this.menuDoc.update({activo: !estado});
 
 }
+// actualizarEstadoPlato(id,m,p,estado){
+
+//   this.menuDoc=this.afs.doc<any>(`menus/${id}.categorias[${m}].platos[${p}]`)
+//   return this.menuDoc.update({activo: !estado});
+
+// }
 
 
 

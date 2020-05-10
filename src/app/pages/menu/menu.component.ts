@@ -138,7 +138,8 @@ ngOnInit():void{
       this.fb.group({
         plato: [''],
         descripcion: [''],
-        precio: ['']
+        precio: [''],
+        activo:[true]
       }));
   }
 

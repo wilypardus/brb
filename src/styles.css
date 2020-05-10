@@ -41,10 +41,15 @@ tabla-borde {
     padding-left: 0px!important;
     padding-right: 0px!important;
     font-weight: 100!important;
+    vertical-align: middle!important;
 }
 
 .will_precio {
-    font-size: 1em!important;
+    font-size: 1.1em!important;
+}
+
+.will_tachado {
+    text-decoration: line-through!important;
 }
 
 

@@ -10,6 +10,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { PruebasComponent } from './pruebas/pruebas.component';
 import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.component';
 import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
+import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
 { path: 'reactivo', component: ReactiveComponent },
 { path: 'menu/:id', component: MenuComponent, canActivate:[AuthGuard]},
 // { path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
+{ path: 'admin/:id', component: AdminMenuComponent, canActivate:[AuthGuard]},
 { path: 'menus', component: MenusFirebaseComponent, canActivate:[AuthGuard]},
 { path: 'login', component: LoginComponent},
 { path: 'register', component: RegisterComponent},

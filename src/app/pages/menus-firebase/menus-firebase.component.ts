@@ -62,7 +62,7 @@ export class MenusFirebaseComponent implements OnInit {
     }
     actualizarEstado(id,estado){
       this._menusService.actualizarEstado(id,estado).then((resp)=>{
-        console.log(resp);
+        //console.log(resp);
       })
     }
 

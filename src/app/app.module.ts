@@ -27,6 +27,7 @@ import { ChatComponent } from './component/chat/chat.component';
 import { ChatService } from './services/chat.service';
 import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.component';
 import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
+import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 
 
 @NgModule({
@@ -53,6 +54,8 @@ import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.compo
     MenusFirebaseComponent,
 
     CustomerMenuComponent,
+
+    AdminMenuComponent,
 
 
   ],
