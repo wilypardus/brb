@@ -10,10 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   ]
 })
 export class MenuComponent implements OnInit {
-  menu: any = {
-    id: "",
-    data: {}
-  };
+  uid:string;
+  menu: any;
   controls;
   idTemp;
   data = {
@@ -39,9 +37,12 @@ export class MenuComponent implements OnInit {
     private _menusService: MenusService,
     private route:ActivatedRoute
     ) {
+
+      this.uid=localStorage.getItem('lid');
+
     this.myForm = this.fb.group({
       id: [''],
-      userId:[''],
+      uid:[this.uid],
       name: [''],
       img: [''],
       categorias: this.fb.array([])
