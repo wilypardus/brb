@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "menu-app-bd": {
+      "hosting": {
+        "formularios": [
+          "menu-app-bd"
+        ]
+      }
+    }
+  }
+}

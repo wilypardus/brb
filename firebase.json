@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "formularios",
+      "public": "dist/formularios",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AngularFireModule } from '@angular/fire';
+//import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +22,7 @@ import { LoginComponent } from './auth/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './auth/register.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { PruebasComponent } from './pruebas/pruebas.component';
 
 
 @NgModule({
@@ -37,6 +42,8 @@ import { HeaderComponent } from './shared/header/header.component';
 
     HeaderComponent,
 
+    PruebasComponent,
+
 
   ],
   imports: [
@@ -45,7 +52,10 @@ import { HeaderComponent } from './shared/header/header.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    //AngularFireAnalyticsModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

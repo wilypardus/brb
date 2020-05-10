@@ -7,6 +7,7 @@ import { MenusComponent } from './pages/menus/menus.component';
 import { LoginComponent } from './auth/login.component';
 import { RegisterComponent } from './auth/register.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PruebasComponent } from './pruebas/pruebas.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
 { path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
 { path: 'login', component: LoginComponent},
 { path: 'register', component: RegisterComponent},
+{ path: 'pruebas', component: PruebasComponent},
 
 
 { path: '**', pathMatch: 'full', redirectTo: 'menus' }
