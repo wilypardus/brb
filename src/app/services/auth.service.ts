@@ -63,6 +63,7 @@ export class AuthService {
     console.log(usuario.email);
     console.log("UsuarioStt",this.usuarioSttTemp);
     this.usuarioSttTemp.nombre=usuario.nombre;
+    this.usuarioSttTemp.adminProtected.status=false;
 
     this.usuarioSttTemp.email=usuario.email;
     const authData={
@@ -75,7 +76,7 @@ export class AuthService {
       map( resp=>{
         this.guardarToken(resp['idToken']);
         //Crear prefil usuario en colleción users
-
+        this.usuarioSttTemp.uid=resp['localId']
         console.log("respuesta Login",resp);
         this._userService.crearUsrSettings(this.usuarioSttTemp);
         return resp;

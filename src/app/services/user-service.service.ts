@@ -31,7 +31,7 @@ this.cargarUser(this.uid);
     this.usersCollection = this.afs.collection<any>('users', ref => ref.where('uid', '==', uid).limit(1));
     return this.usersCollection.valueChanges({ idField: 'eventId' }).pipe(
       map(resp=>{
-        // console.log("usuario filtrado por uid",resp);
+        //console.log("usuario filtrado por uid",resp);
        return this.usuario=resp[0]
       })
     )
@@ -43,9 +43,9 @@ this.cargarUser(this.uid);
     return this.usersCollection.add(usuario);
   }
 
-  actualizarUsrSettings(menu,eventId){
+  actualizarUsrSettings(usuario,eventId){
     this.userDoc=this.afs.doc<any>(`users/${eventId}`)
-    return this.userDoc.update(menu);
+    return this.userDoc.update(usuario);
 
   }
 
