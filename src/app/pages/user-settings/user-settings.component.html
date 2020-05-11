@@ -1,0 +1,13 @@
+<form [formGroup]="usuarioForm" (ngSubmit)="crearUsrSettings()" #f="ngForm">
+
+    <label for="name">Nombre</label>
+    <input type="text" id="nombre" class="form-control" placeholder="Nombre de la carta..." name="nombre" formControlName="nombre" required>
+    <label for="email">Email</label>
+    <input type="text" id="email" class="form-control" placeholder="Nombre de la carta..." name="email" formControlName="email" required>
+    <label for="img">img</label>
+    <input type="text" id="img" class="form-control" placeholder="Nombre de la carta..." name="img" formControlName="img" required>
+    <label for="adminStatus">Protección admin</label>
+    <input type="text" id="adminStatus" class="form-control" placeholder="Nombre de la carta..." name="adminStatus" formControlName="adminStatus" required>
+    <label for="adminPwd">Contraseña</label>
+    <input type="text" id="adminPwd" class="form-control" placeholder="Nombre de la carta..." name="adminPwd" formControlName="adminPwd" required>
+</form>

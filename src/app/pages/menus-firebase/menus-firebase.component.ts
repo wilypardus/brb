@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
   ]
 })
 export class MenusFirebaseComponent implements OnInit {
-
+uid:string;
   constructor(public _menusService:MenusService,private router:Router) {
-    this._menusService.cargarMenus().subscribe();
+    this.uid=localStorage.getItem('lid')
+    this._menusService.cargarMenus(this.uid).subscribe();
    }
 
   ngOnInit(): void {

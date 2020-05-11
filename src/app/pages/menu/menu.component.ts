@@ -81,7 +81,7 @@ ngOnInit():void{
 
       });
 
-    console.log(resp);
+    //console.log(resp);
       this.myForm.get('name').setValue(resp.name);
 
       this.idTemp=id;
@@ -100,7 +100,8 @@ ngOnInit():void{
       this,this.myForm.get('modified').setValue(new Date())
       alert("Registro actualizado");
       this._menusService.actualizarMenu(this.myForm.value,this.idTemp).then(resp => {
-        console.log(resp);
+        //console.log(resp);
+        location.reload();
       });
     }else{
       alert("Registro creado");
@@ -109,7 +110,10 @@ ngOnInit():void{
       this._menusService.crearMenu(this.myForm.value).then(resp => {
         this.myForm.get('id').setValue(resp.id);
         this.idTemp=resp.id
+        this._menusService.crearMenu(this.myForm.value)
         //console.log(resp);
+
+
       });
 
     }
@@ -164,6 +168,7 @@ ngOnInit():void{
         plato: y.plato,
         descripcion: y.descripcion,
         precio: y.precio,
+        activo: y.activo,
       }));
     });
     return arr;

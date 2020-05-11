@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserModel } from '../models/user.model';
+import { UserLoginModel } from '../models/userLogin.model';
 import { map } from 'rxjs/operators';
+import { UserModel } from '../models/user.model';
+import { UserService } from './user-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,18 @@ export class AuthService {
   private url='https://identitytoolkit.googleapis.com/v1/accounts:';
   private apikey='AIzaSyCdG2JvQyyWg8vYQmqB2jjlgttQxqNo7Pk';
   userToken:string;
+  usuarioSttTemp:UserModel={
+    eventId:'',
+  uid:'',
+  nombre:'',
+  email:'',
+  img:'',
+  created:new Date(),
+  activo:false,
+  adminProtected:{
+    status:false,
+    pwd:''
+  }}
 
 //Crear nuevo usuario
 //  https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
@@ -19,7 +33,7 @@ export class AuthService {
 
 
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,public _userService:UserService) {
     this.leerToken();
    }
 
@@ -27,7 +41,7 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
-  login(usuario:UserModel){
+  login(usuario:UserLoginModel){
     const authData={
       ...usuario,
       returnSecureToken:true,
@@ -38,14 +52,19 @@ export class AuthService {
       map( resp=>{
         this.guardarToken(resp['idToken']);
         const uid=resp['localId']
-        console.log("uid",uid);
+        //console.log("uid",uid);
         localStorage.setItem('lid',uid)
         return resp;
       } )
     )
   }
 
-  nuevoUsuario(usuario:UserModel){
+  nuevoUsuario(usuario:UserLoginModel){
+    console.log(usuario.email);
+    console.log("UsuarioStt",this.usuarioSttTemp);
+    this.usuarioSttTemp.nombre=usuario.nombre;
+
+    this.usuarioSttTemp.email=usuario.email;
     const authData={
       ...usuario,
       returnSecureToken:true,
@@ -55,6 +74,10 @@ export class AuthService {
     ).pipe(
       map( resp=>{
         this.guardarToken(resp['idToken']);
+        //Crear prefil usuario en colleción users
+
+        console.log("respuesta Login",resp);
+        this._userService.crearUsrSettings(this.usuarioSttTemp);
         return resp;
       } )
     )

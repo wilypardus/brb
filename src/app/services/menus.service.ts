@@ -33,13 +33,22 @@ constructor(
     )
   }
 
-  // noDisponible(menu){
+  // noDisponible(menu,estado){
   //   this.menuDoc=this.afs.doc<any>(`menus/${menu}`)
 
   // return this.menuDoc.update({'plato': !estado});
   // }
+  cargarMenus(uid){
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid));
+    return this.menusCollection.valueChanges({ idField: 'eventId' }).pipe(
+      map(resp=>{
+        //console.log("Menus",resp);
+        this.menus=resp
+      })
+    )
+  }
 
-cargarMenus(){
+cargarAllMenus(){
   this.menusCollection = this.afs.collection<any>('menus');
   return this.menusCollection.valueChanges({ idField: 'eventId' }).pipe(
     map(resp=>{
@@ -90,12 +99,12 @@ actualizarEstado(id,estado){
   return this.menuDoc.update({activo: !estado});
 
 }
-// actualizarEstadoPlato(id,m,p,estado){
+actualizarEstadoPlato(id,m,p,estado){
 
-//   this.menuDoc=this.afs.doc<any>(`menus/${id}.categorias[${m}].platos[${p}]`)
-//   return this.menuDoc.update({activo: !estado});
+  this.menuDoc=this.afs.doc<any>(`menus/${id}.categorias[${m}].platos`)
+  return this.menuDoc.update({activo: !estado});
 
-// }
+}
 
 
 

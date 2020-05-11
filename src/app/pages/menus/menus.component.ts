@@ -16,7 +16,7 @@ menus;
   ngOnInit(): void {
 
     this._menusService.getMenus().subscribe(resp=>{
-      console.log(resp);
+      //console.log(resp);
       this.menus=resp
     })
   }

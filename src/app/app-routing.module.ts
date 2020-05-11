@@ -11,12 +11,14 @@ import { PruebasComponent } from './pruebas/pruebas.component';
 import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.component';
 import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 
 
 const routes: Routes = [
 { path: 'template', component: TemplateComponent },
 { path: 'reactivo', component: ReactiveComponent },
 { path: 'menu/:id', component: MenuComponent, canActivate:[AuthGuard]},
+{ path: 'user', component: UserSettingsComponent, canActivate:[AuthGuard]},
 // { path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
 { path: 'admin/:id', component: AdminMenuComponent, canActivate:[AuthGuard]},
 { path: 'menus', component: MenusFirebaseComponent, canActivate:[AuthGuard]},

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
-import { UserModel } from '../models/user.model';
+import { UserLoginModel } from '../models/userLogin.model';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuario: UserModel = new UserModel();
+  usuario: UserLoginModel = new UserLoginModel();
   recordarme=false;
   constructor(private _auth: AuthService,private router:Router) { }
 

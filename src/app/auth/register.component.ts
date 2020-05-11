@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel } from '../models/user.model';
+import { UserLoginModel } from '../models/userLogin.model';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
   ]
 })
 export class RegisterComponent implements OnInit {
-usuario:UserModel;
+usuario:UserLoginModel;
 recordarme=false;
   constructor(private _auth:AuthService,
     private router:Router) { }
 
   ngOnInit(): void {
-    this.usuario=new UserModel();
+    this.usuario=new UserLoginModel();
 
 
   }

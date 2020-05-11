@@ -1,9 +1,13 @@
 export class UserModel{
-  id:string;
+  eventId:string
+  uid:string;
   nombre:string;
-  password:string;
   email:string;
+  img:string;
   created:Date;
-
-
+  activo:boolean;
+  adminProtected:{
+    status:boolean,
+    pwd:string;
+  };
 }
