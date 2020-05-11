@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { MenusService } from '../../services/menus.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -36,7 +36,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _menusService: MenusService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
     ) {
 
       this.uid=localStorage.getItem('lid');
@@ -101,7 +102,7 @@ ngOnInit():void{
       alert("Registro actualizado");
       this._menusService.actualizarMenu(this.myForm.value,this.idTemp).then(resp => {
         //console.log(resp);
-        location.reload();
+    this.router.navigateByUrl("/menus")
       });
     }else{
       alert("Registro creado");
@@ -110,8 +111,9 @@ ngOnInit():void{
       this._menusService.crearMenu(this.myForm.value).then(resp => {
         this.myForm.get('id').setValue(resp.id);
         this.idTemp=resp.id
-        this._menusService.crearMenu(this.myForm.value)
+        this._menusService.actualizarMenu(this.myForm.value,this.idTemp)
         //console.log(resp);
+        this.router.navigateByUrl("/menus")
 
 
       });
