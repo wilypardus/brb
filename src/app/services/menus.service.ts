@@ -38,8 +38,8 @@ constructor(
 
   // return this.menuDoc.update({'plato': !estado});
   // }
-  cargarMenus(uid){
-    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid));
+  cargarMenus(){
+    this.menusCollection = this.afs.collection<any>('menus');
     return this.menusCollection.valueChanges({ idField: 'eventId' }).pipe(
       map(resp=>{
         //console.log("Menus",resp);
