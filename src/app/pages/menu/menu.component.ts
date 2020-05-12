@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { MenusService } from '../../services/menus.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   ]
 })
 export class MenuComponent implements OnInit {
+  upLoadPercent: Observable<number>;
+  urlImage: string;
   uid:string;
   menu: any;
   controls;
@@ -37,7 +42,8 @@ export class MenuComponent implements OnInit {
     private fb: FormBuilder,
     private _menusService: MenusService,
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private storage: AngularFireStorage
     ) {
 
       this.uid=localStorage.getItem('lid');
@@ -46,7 +52,6 @@ export class MenuComponent implements OnInit {
       id: [''],
       uid:[this.uid],
       name: [''],
-      img: [''],
       created:[new Date()],
       modified:[''],
       activo:[false],
@@ -78,6 +83,7 @@ ngOnInit():void{
       control.push(this.fb.group({
         categoria: x.categoria,
         descripcion: x.descripcion,
+        img: x.img,
         platos: this.setPlatos(x) }));
 
       });
@@ -91,6 +97,7 @@ ngOnInit():void{
     })
 
   }else{
+    this.crearMenu();
     this.addNewCategoria()
   }
 
@@ -102,10 +109,11 @@ ngOnInit():void{
       alert("Registro actualizado");
       this._menusService.actualizarMenu(this.myForm.value,this.idTemp).then(resp => {
         //console.log(resp);
-    this.router.navigateByUrl("/menus")
+        this.router.navigateByUrl['/menus']
+
       });
     }else{
-      alert("Registro creado");
+     // alert("Registro creado");
 
       //console.log(this.myForm.value);
       this._menusService.crearMenu(this.myForm.value).then(resp => {
@@ -113,7 +121,7 @@ ngOnInit():void{
         this.idTemp=resp.id
         this._menusService.actualizarMenu(this.myForm.value,this.idTemp)
         //console.log(resp);
-        this.router.navigateByUrl("/menus")
+
 
 
       });
@@ -129,6 +137,7 @@ ngOnInit():void{
       this.fb.group({
         categoria: [''],
         descripcion: [''],
+        img:[''],
         platos: this.fb.array([])
       })
     );
@@ -180,6 +189,34 @@ ngOnInit():void{
     this._menusService.actualizarEstado(id,estado).then((resp)=>{
       //console.log(resp);
     })
+  }
+
+  onUpload(e,i){
+  const cartaId=this.myForm.get('id').value;
+  console.log(cartaId);
+
+
+
+    const file = e.target.files[0];
+    const filePath = `upload/${this.uid}/${cartaId}/${i}`;
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    this.upLoadPercent = task.percentageChanges();
+    task.snapshotChanges()
+    .pipe(
+      finalize(() =>{
+    ref.getDownloadURL().subscribe(resp=>{
+      this.urlImage=resp
+      console.log(this.urlImage);
+      (this.myForm.get('categorias') as FormArray).at(i).get('img').setValue(resp);
+
+
+
+
+    });
+    })
+    ).subscribe();
   }
 }
 
