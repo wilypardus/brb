@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire';
 //import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
@@ -29,9 +31,6 @@ import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.co
 import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
-import { FotosComponent } from './component/fotos/fotos.component';
-import { CargaComponent } from './component/carga/carga.component';
-import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 import { UploadComponent } from './component/upload/upload.component';
 
 
@@ -64,11 +63,9 @@ import { UploadComponent } from './component/upload/upload.component';
 
     UserSettingsComponent,
 
-    FotosComponent,
 
-    CargaComponent,
 
-    NgDropFilesDirective,
+
 
     UploadComponent,
 
@@ -84,6 +81,7 @@ import { UploadComponent } from './component/upload/upload.component';
     AngularFireModule.initializeApp(environment.firebase),
     //AngularFireAnalyticsModule,
     AngularFirestoreModule,
+    AngularFireStorageModule
 
   ],
   providers: [ChatService],

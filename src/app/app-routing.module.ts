@@ -13,14 +13,12 @@ import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.co
 import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
-import { FotosComponent } from './component/fotos/fotos.component';
-import { CargaComponent } from './component/carga/carga.component';
+
 
 
 const routes: Routes = [
 { path: 'template', component: TemplateComponent },
 { path: 'reactivo', component: ReactiveComponent },
-{ path: 'carga', component: CargaComponent },
 { path: 'upload', component: UploadComponent },
 { path: 'menu/:id', component: MenuComponent, canActivate:[AuthGuard]},
 { path: 'user', component: UserSettingsComponent, canActivate:[AuthGuard]},

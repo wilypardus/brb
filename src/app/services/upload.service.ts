@@ -1,29 +1,15 @@
+import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 
-
-@Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styles: [
-  ]
+@Injectable({
+  providedIn: 'root'
 })
-export class UploadComponent implements OnInit {
-
+export class UploadService {
   upLoadPercent: Observable<number>;
-  urlImage: string
-
-  constructor(
-    private storage: AngularFireStorage
-               ) { }
-
-
-  ngOnInit(): void {
-  }
+  urlImage: string;
+  constructor(private storage: AngularFireStorage) { }
 
   onUploadLogo(e){
     const id = Math.random().toString(36).substring(2);
@@ -36,12 +22,13 @@ export class UploadComponent implements OnInit {
     task.snapshotChanges()
     .pipe(
       finalize(() =>{
-    ref.getDownloadURL().subscribe(resp=>{
-      this.urlImage=resp
-      //console.log(this.urlImage)
-    });
+    // ref.getDownloadURL().subscribe(resp=>{
+    //   this.urlImage=resp
+    //   //console.log(this.urlImage)
+    // });
     })
     ).subscribe();
+
   }
   onUpload(e){
     const id = Math.random().toString(36).substring(2);

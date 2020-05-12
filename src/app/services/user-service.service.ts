@@ -43,8 +43,8 @@ this.cargarUser(this.uid);
     return this.usersCollection.add(usuario);
   }
 
-  actualizarUsrSettings(usuario,eventId){
-    this.userDoc=this.afs.doc<any>(`users/${eventId}`)
+  actualizarUsrSettings(usuario,uid){
+    this.userDoc=this.afs.doc<any>(`users/${uid}`)
     return this.userDoc.update(usuario);
 
   }
