@@ -29,6 +29,10 @@ import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.co
 import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { FotosComponent } from './component/fotos/fotos.component';
+import { CargaComponent } from './component/carga/carga.component';
+import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
+import { UploadComponent } from './component/upload/upload.component';
 
 
 @NgModule({
@@ -59,6 +63,14 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
     AdminMenuComponent,
 
     UserSettingsComponent,
+
+    FotosComponent,
+
+    CargaComponent,
+
+    NgDropFilesDirective,
+
+    UploadComponent,
 
 
   ],
